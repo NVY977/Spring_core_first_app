@@ -7,9 +7,7 @@ The MusicPlayer class is responsible for playing the music of a specific or list
 
 In the main testSpring class (TestSpring), work with beans.
 
-// Over time, I got rid of the applicationContext.xml and moved on to creating annotations.
-
-// You can see the context file work in earlier commits:
+// Over time, I got rid of the applicationContext.xml and moved on to creating annotations. You can see the context file work in earlier commits:
 
 // https://github.com/NVY977/Spring_java_first_app/pull/2/commits/5c32cfe435fb9da0348c10dd7e46284eead3bee9
 
