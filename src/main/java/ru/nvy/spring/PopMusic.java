@@ -1,6 +1,12 @@
 package ru.nvy.spring;
 
-public class PopMusic implements Music{
+import org.springframework.stereotype.Component;
+
+/**
+ * @author NVY
+ */
+@Component
+public class PopMusic implements Music {
     @Override
     public String getSong() {
         return "Sacrifice";
