@@ -1,93 +1,35 @@
 package ru.nvy.spring;
 
-import java.sql.SQLOutput;
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 /**
  * @author NVY
  */
+@Component
 public class MusicPlayer {
-    List<Music> musicList = new ArrayList<>();
-    Music music;
-    private String name;
-    private int volume;
-
-    /**
-     * Constructor Without param
-     */
-    public MusicPlayer() {
-    }
-
-    // IoC via Constructor (Dependency Injection)
+    private Music rockMusic;
+    private Music popMusic;
 
     /**
      * Constructor MusicPlayer
+     * IoC via Constructor (Dependency Injection)
      *
-     * @param music
+     * @param rockMusic
+     * @param popMusic
      */
-    public MusicPlayer(Music music) {
-        this.music = music;
-    }
-
-    // region Get
-
-    /**
-     * String name
-     *
-     * @return String name
-     */
-    public String getName() {
-        return name;
+    @Autowired
+    public MusicPlayer(@Qualifier("rockMusic") Music rockMusic,
+                       @Qualifier("popMusic") Music popMusic) {
+        this.rockMusic = rockMusic;
+        this.popMusic = popMusic;
     }
 
     /**
-     * int Volume
-     *
-     * @return int Volume
+     * A method that implements the return of musical compositions that are currently playing
      */
-    public int getVolume() {
-        return volume;
-    }
-    // endregion
-
-    //region Set IoC via Setter (Dependency Injection)
-
-    /**
-     * Set Music List
-     *
-     * @param musicList
-     */
-    public void setMusicList(List<Music> musicList) {
-        this.musicList = musicList;
-    }
-
-    /**
-     * Set Name
-     *
-     * @param name
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * Set volume
-     *
-     * @param volume
-     */
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
-    //endregion
-
-    /**
-     * Метод реализующий вывод музыкальных композиций, которые играют в данный момент
-     */
-    public void playMusic() {
-        System.out.println("Via constructor Playing: " + music.getSong());
-        for (Music music : musicList) {
-            System.out.println("Playing: " + music.getSong());
-        }
+    public String playMusic() {
+        return "Playing: " + rockMusic.getSong() + " and " + popMusic.getSong();
     }
 }
